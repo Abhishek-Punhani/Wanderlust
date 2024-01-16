@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
 const Listing=require("./models/listing.js");
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/project');
+    await mongoose.connect('mongodb://127.0.0.1:27017/test');
 }
 main()
 .then((res)=>{

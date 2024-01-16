@@ -1,14 +1,5 @@
 <% layout("/layouts/boilerplate") %>
-<% import * as maptilersdk from '@maptiler/sdk';
 
-  const map = new maptilersdk.Map({
-  container: 'map',
-  center: [-122.420679, 37.772537],
-  zoom: 13,
-  style: maptilersdk.MapStyle.STREETS,
-  hash: true,
-});
-%>
 <body>
        <div class="row" >
          <div class="col-8 offset-4">
@@ -84,8 +75,9 @@
          </form>
       </div>
       <hr>
-      <%}%>
       <h4 class="mb-5 mt-3">ALL Reviews</h4>
+      <%}%>
+     
     
 
       <div class="card-container mb-3 row" >

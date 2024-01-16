@@ -41,15 +41,14 @@ function asyncWrap(fn){
     }
 
 
-const store=MongoStore.create({
-mongoUrl:dbUrl,
-crypto:{
-    secret:process.env.SECRET,
-},
-touchAfter:24*3600
-})    
+// const store=MongoStore.create({
+// mongoUrl:dbUrl,
+// crypto:{
+//     secret:process.env.SECRET,
+// },
+// touchAfter:24*3600
+// })    
 const sessionObject={
-    store,
     secret: process.env.SECRET,
     resave:false,
     saveUninitialized:true,
@@ -67,7 +66,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 async function main(){
-    await mongoose.connect(dbUrl);
+    await mongoose.connect('mongodb://127.0.0.1:27017/project');
 }
 main().then((res)=>{
     console.log("Connection successfull");
