@@ -1,0 +1,98 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<body>
+ <div class="filters row-cols-md-4-sm-3">
+
+  <div class="filter">
+    <i class="fa-solid fa-fire"></i>
+    <p>Trending</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-bed"></i>
+    <p>Rooms</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-city"></i>
+    <p>Iconic Cities</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-mountain"></i>
+    <p>Mountains</p>
+  </div>
+  <div class="filter">
+    <i class="fa-brands fa-fort-awesome"></i>
+    <p>Castles</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-person-swimming"></i>
+    <p>Amazing Pools</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-campground"></i>
+    <p>Camping</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-cow"></i>
+    <p>Farms</p>
+  </div>
+  <div class="filter">
+    <i class="fa-regular fa-snowflake"></i>
+    <p>Arctic</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-igloo"></i>
+    <p>Domes</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-ship"></i>
+    <p>Boats</p>
+  </div>
+  <div class="form-check form-switch form-check-reverse tax-toggle">
+   <div class="tax-content">
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse">
+    <label class="form-check-label" for="flexSwitchCheckReverse">Display Total After Taxes</label>
+   </div>
+  </div>
+ </div>
+   <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 card-container">
+   <% for(item of alllistings){ %>
+  <a href="http://localhost:8080/listings/<%=item._id%>" class="listing-link">
+
+      
+         <div class="card cols" style="width: 20rem;">
+            <img src="<%= item.image.url%>" class="card-img-top" alt="img_listing" style="height: 20rem;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+               <p style="padding: 0;margin: 0;"> <b> <%= item.title %></b></p>
+               <p style="padding: 0;margin: 0;">&#8377; <%=item.price.toLocaleString("en-IN")%>/night
+              <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+              </p>
+              </p>
+            </div>
+          </div>
+
+
+</a>
+ <% } %> 
+</div>
+ 
+<script>
+  let togglebtn=document.getElementById("flexSwitchCheckReverse");
+  let taxinfo=document.getElementsByClassName("tax-info");
+  
+  togglebtn.addEventListener("click",()=>{
+    for(info of taxinfo){
+  if(info.style.display !="inline"){
+    info.style.display="inline";
+  }
+  else{
+    info.style.display="none";
+  }
+  }
+});
+</script>
+</body>
+
+
+
