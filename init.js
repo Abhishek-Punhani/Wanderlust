@@ -1,8 +1,17 @@
-
 const mongoose = require('mongoose');
-const Listing=require("./models/listing.js");
+const dbUrl=process.env.ATLAS_LINK;
+const MongoClient = require('mongodb').MongoClient;
+
+const uri = process.env.ATLAS_LINK;
+const client = new MongoClient(uri);
+
+client.connect(function(err, db) {
+  if (err) throw err;
+
+  const database = db.db('project');
+  const collection = database.collection('listings');
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/test');
+    await mongoose.connect(dbUrl);
 }
 main()
 .then((res)=>{
@@ -362,8 +371,14 @@ let sampleListings = [
     },
   ];
 const initDB =async () =>{
-    await Listing.deleteMany({});
+    await collection.deleteMany({});
     sampleListings=sampleListings.map((obj)=>({...obj,owner:"659fcd532bcded794ae949b9"}))
-    await Listing.insertMany(sampleListings);
+    await collection.insertMany(sampleListings);
 }
 initDB();
+
+
+
+
+  client.close();
+});
