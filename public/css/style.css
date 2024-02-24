@@ -167,3 +167,7 @@ padding: 0;
     height: 2.5rem;
     width:8rem;
 }
+#map{
+    height: 300px;
+    width: 80vh;
+}

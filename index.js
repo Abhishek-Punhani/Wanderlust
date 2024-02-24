@@ -20,8 +20,6 @@ const passport=require("passport");
 const LocalStrategy=require("passport-local").Strategy;
 const User=require("./models/user.js");
 const dbUrl=process.env.ATLAS_LINK;
-
-
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.urlencoded({extended:false}))
@@ -41,13 +39,13 @@ function asyncWrap(fn){
     }
 
 
-// const store=MongoStore.create({
-// mongoUrl:dbUrl,
-// crypto:{
-//     secret:process.env.SECRET,
-// },
-// touchAfter:24*3600
-// })    
+const store=MongoStore.create({
+mongoUrl:dbUrl,
+crypto:{
+    secret:process.env.SECRET,
+},
+touchAfter:24*3600
+})    
 const sessionObject={
     secret: process.env.SECRET,
     resave:false,
@@ -56,7 +54,8 @@ const sessionObject={
         expires: Date.now() + 1000*7*24*60*60,
         maxAge:1000*7*24*60*60,
         httpOnly:true
-    }
+    },
+    store
 }
 app.use(session(sessionObject));
 app.use(flash());
@@ -66,7 +65,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/project');
+    await mongoose.connect(dbUrl);
 }
 main().then((res)=>{
     console.log("Connection successfull");
