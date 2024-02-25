@@ -33,7 +33,7 @@
          </div>
        </div>
       <div class="row">
-         <% if(CurrUser && CurrUser._id.equals(list.owner._id)){ %>
+         <% if(CurrUser&&list.owner && CurrUser._id.equals(list.owner._id)){ %>
             <div class="col-1 offset-5">
                <a href="/listings/<%=list._id%>/edit" class="btn btn-primary ">Edit</a>
               
