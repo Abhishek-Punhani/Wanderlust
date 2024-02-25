@@ -8,7 +8,12 @@
                  <h5 class="card-title"><%= list.title %></h5>
                  <p class="card-text">
                   <p style="padding: 0;margin: 0;">
-                   <h6 class="owned-by">Owned By : </h6> <i> <%=   list.owner.username %></i>
+                    <% if(list.owner ){ %>
+                   <h6 class="owned-by">Owned By : </h6> <i> <%=list.owner.username %></i>
+                   <%  } else{ %>
+                     <h6 class="owned-by">Owned By : </h6> <i> Admin</i>
+
+                     <% }%>
                   </p>
                  <p class="card-text">
                   <p style="padding: 0;margin: 0;">
